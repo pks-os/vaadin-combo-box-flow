@@ -22,18 +22,12 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
-@Tag("combo-box-in-a-template")
-@HtmlImport("src/combo-box-in-a-template.html")
-public class ComboBoxInATemplate extends PolymerTemplate<TemplateModel> {
+@Tag("combo-box-in-a-template2")
+@HtmlImport("src/combo-box-in-a-template2.html")
+public class ComboBoxInATemplate2 extends PolymerTemplate<TemplateModel> {
 
-    @Id("comboBox")
+    @Id("comboBox2")
     ComboBox<String> comboBox;
-
-    // @Id
-    // ComboBox<String> combo1;
-    //
-    // @Id
-    // ComboBox<String> combo2;
 
     public ComboBox<String> getComboBox() {
         return comboBox;

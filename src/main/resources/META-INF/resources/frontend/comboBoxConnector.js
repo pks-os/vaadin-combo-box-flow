@@ -4,6 +4,10 @@ window.Vaadin.Flow.comboBoxConnector = {
     if (comboBox.$connector) {
       return;
     }
+    comboBox.addEventListener('value-changed', e => {
+//        debugger;
+        console.log('value ', e.detail.value);
+    });
 
     comboBox.$connector = {};
 
@@ -133,7 +137,7 @@ window.Vaadin.Flow.comboBoxConnector = {
       }
 
       // Let server know we're done
-      comboBox.$server.confirmUpdate(id);
+//      comboBox.$server.confirmUpdate(id);
     }
 
     const commitPage = function (page, callback) {

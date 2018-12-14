@@ -16,27 +16,24 @@
 package com.vaadin.flow.component.combobox.test;
 
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
-@Tag("combo-box-in-a-template")
-@HtmlImport("src/combo-box-in-a-template.html")
-public class ComboBoxInATemplate extends PolymerTemplate<TemplateModel> {
+@Tag("wrapper-template")
+@HtmlImport("src/wrapper-template.html")
+public class WrapperTemplate extends PolymerTemplate<TemplateModel> {
 
-    @Id("comboBox")
-    ComboBox<String> comboBox;
+    @Id
+    ComboBoxInATemplate a;
+    @Id
+    ComboBoxInATemplate2 b;
 
     // @Id
     // ComboBox<String> combo1;
     //
     // @Id
     // ComboBox<String> combo2;
-
-    public ComboBox<String> getComboBox() {
-        return comboBox;
-    }
 
 }
