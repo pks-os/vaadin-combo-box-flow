@@ -85,7 +85,7 @@ public class ComboBoxInTemplatePage extends Div {
     }
 
     private void handler2(DomEvent domEvent) {
-        System.out.println();
+        // System.out.println();
     }
 
     private void handler(HasValue.ValueChangeEvent e) {

@@ -87,6 +87,8 @@ public class ComboBox<T> extends GeneratedVaadinComboBox<ComboBox<T>, T>
         implements HasSize, HasValidation,
         HasFilterableDataProvider<T, String> {
 
+    public static final String KEY = "value";
+
     /**
      * A callback method for fetching items. The callback is provided with a
      * non-null string filter, offset index and limit.
@@ -228,11 +230,16 @@ public class ComboBox<T> extends GeneratedVaadinComboBox<ComboBox<T>, T>
     public ComboBox(int pageSize) {
         super(null, null, String.class, ComboBox::presentationToModel,
                 ComboBox::modelToPresentation);
+
         dataGenerator.addDataGenerator((item, jsonObject) -> jsonObject
                 .put("label", generateLabel(item)));
+        dataGenerator.addDataGenerator((item, json) -> {
+            json.remove("key");
+            json.put("value", getKeyMapper().key(item));
+        });
 
-        setItemValuePath("key");
-        setItemIdPath("key");
+        setItemValuePath(KEY);
+        setItemIdPath(KEY);
         setPageSize(pageSize);
     }
 
@@ -305,6 +312,8 @@ public class ComboBox<T> extends GeneratedVaadinComboBox<ComboBox<T>, T>
 
     @Override
     public void setValue(T value) {
+        setItemValuePath(KEY);
+        setItemIdPath(KEY);
         if (dataCommunicator == null) {
             if (value == null) {
                 return;
@@ -330,7 +339,7 @@ public class ComboBox<T> extends GeneratedVaadinComboBox<ComboBox<T>, T>
         // This ensures that the selection works even with lazy loading when the
         // item is not yet loaded
         JsonObject json = Json.createObject();
-        json.put("key", keyMapper.key(value));
+        json.put(KEY, keyMapper.key(value));
         dataGenerator.generateData(value, json);
         setSelectedItem(json);
     }

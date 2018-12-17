@@ -21,10 +21,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.github.javafaker.Faker;
+
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.combobox.ComboBox.ItemFilter;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
@@ -117,6 +119,7 @@ public class ComboBoxView extends DemoView {
         ComboBox<String> comboBox = new ComboBox<>("Browsers");
         comboBox.setItems("Google Chrome", "Mozilla Firefox", "Opera",
                 "Apple Safari", "Microsoft Edge");
+        comboBox.setValue("Google Chrome");
 
         comboBox.addValueChangeListener(event -> {
             if (event.getSource().isEmpty()) {
@@ -125,11 +128,14 @@ public class ComboBoxView extends DemoView {
                 message.setText("Selected browser: " + event.getValue());
             }
         });
+
+        NativeButton button = new NativeButton("foo",
+                e -> comboBox.setValue("Apple Safari"));
         // end-source-example
 
         comboBox.getStyle().set(ElementConstants.STYLE_WIDTH, WIDTH_STRING);
         comboBox.setId("string-selection-box");
-        addCard("String selection", comboBox, message);
+        addCard("String selection", comboBox, message, button);
     }
 
     private void createObjectComboBox() {

@@ -1,5 +1,7 @@
 window.Vaadin.Flow.comboBoxConnector = {
   initLazy: function (comboBox) {
+//  comboBox.itemValuePath = 'value';
+//  comboBox.itemIdPath = 'key';
     // Check whether the connector was already initialized for the ComboBox
     if (comboBox.$connector) {
       return;
@@ -74,6 +76,7 @@ window.Vaadin.Flow.comboBoxConnector = {
     }
 
     comboBox.$connector.set = function (index, items) {
+      console.log(items);
       if (index % comboBox.pageSize != 0) {
         throw 'Got new data to index ' + index + ' which is not aligned with the page size of ' + comboBox.pageSize;
       }
@@ -102,7 +105,7 @@ window.Vaadin.Flow.comboBoxConnector = {
         let item = items[i];
 
         for (let j = 0; j < comboBox.filteredItems.length; j++) {
-          if (comboBox.filteredItems[j].key === item.key) {
+          if (comboBox.filteredItems[j].value === item.value) {
             comboBox.set('filteredItems.' + j, item);
             break;
           }
